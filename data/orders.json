@@ -1,0 +1,44 @@
+[
+    {
+        "orderId": 40404023,
+        "orderDate": "01/04/2019",
+        "shippingDate": "03/04/2019",
+        "shippingFee": 0,
+        "subTotal": 1130,
+        "total": 1130,
+        "products": [
+            {
+                "name": "L'incroyable matelas Tediber",
+                "price": 750,
+                "size": "160 x 200cm",
+                "quantity": 1,
+                "imgPath": "mattress"
+            },
+            {
+                "name": "L'incroyable oreiller Tediber",
+                "price": 85,
+                "size": "60 x 60cm",
+                "quantity": 2,
+                "imgPath": "pillow"
+            },
+            {
+                "name": "L'incroyable couette Tediber",
+                "price": 210,
+                "size": "240 x 220cm",
+                "quantity": 1,
+                "imgPath": "duvet"
+            }
+        ],
+        "shippingInfo": {
+            "shippingMethod": "pickup",
+            "poiName": "Point Relais",
+            "address": "57 rue Jean Pierre Timbaud",
+            "city": "Paris",
+            "zip": 75011,
+            "country": "France",
+            "recipientName": "Shannon Honniball",
+            "recipientPhone": "0664262272",
+            "estimatedDelivery": "09/04/2019"
+        }
+    }
+]
