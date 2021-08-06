@@ -7,11 +7,12 @@
       <ul class="order__wrapper__info">
         <li>N° de commande&nbsp;: <strong class="bold" v-text="orderId" /></li>
         <li>
-          Date de commande&nbsp;: <strong class="bold" v-text="orderDate" />
+          Date de commande&nbsp;:
+          <strong class="bold" v-text="formatDate(orderDate)" />
         </li>
         <li>
           Date d'expédition&nbsp;:
-          <strong class="bold" v-text="formattedOrderShippingDate" />
+          <strong class="bold" v-text="formatDate(shippingDate)" />
         </li>
       </ul>
       <div>
@@ -93,10 +94,8 @@ export default {
         prop.every((paragraph) => typeof paragraph === 'string'),
     },
   },
-  computed: {
-    formattedOrderShippingDate() {
-      return formatDate(this.shippingDate);
-    },
+  methods: {
+    formatDate,
   },
   components: {
     ProductsOverview,

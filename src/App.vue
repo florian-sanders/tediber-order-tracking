@@ -40,7 +40,7 @@ export default {
 
 body {
   font-family: 'Segoe UI', 'Roboto', 'Ubuntu', 'sans-serif';
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-weight: 300;
   color: $color-main;
 }
