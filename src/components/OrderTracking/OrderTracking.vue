@@ -21,7 +21,7 @@
             :orderProgress="progress"
           />
         </Disclosure>
-        <Disclosure heading="Information sur les retours" headingTag="h2">
+        <Disclosure heading="Informations sur les retours" headingTag="h2">
           <component :is="textSplitterComponent" :textContent="returnNotice" />
         </Disclosure>
       </div>
