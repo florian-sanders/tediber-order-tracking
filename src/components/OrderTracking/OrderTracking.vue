@@ -1,25 +1,36 @@
 <template>
-  <div>
-    <h1 class="">Suivi de commande</h1>
-    <p>N° de commande&nbsp;: <span class="" v-text="orderId" /></p>
-    <p>Date de commande&nbsp;: <span class="" v-text="orderDate" /></p>
-    <p>Date d'expédition&nbsp;: <span class="" v-text="formattedOrderShippingDate" /></p>
-    <div>
-      <Disclosure heading="Suivi de commande" headingTag="h2">
-        <component
-          :is="shippingProgressComponent"
-          :orderProgress="progress"
-        />
-      </Disclosure>
-      <Disclosure heading="Information sur les retours" headingTag="h2">
-        <component :is="textSplitterComponent" :textContent="returnNotice" />
-      </Disclosure>
+  <section class="order">
+    <h1 class="section-heading">
+      <span class="section-heading__text">Suivi de commande</span>
+    </h1>
+    <div class="order__wrapper">
+      <ul class="order__wrapper__info">
+        <li>N° de commande&nbsp;: <strong class="bold" v-text="orderId" /></li>
+        <li>
+          Date de commande&nbsp;: <strong class="bold" v-text="orderDate" />
+        </li>
+        <li>
+          Date d'expédition&nbsp;:
+          <strong class="bold" v-text="formattedOrderShippingDate" />
+        </li>
+      </ul>
+      <div>
+        <Disclosure heading="Suivi de commande" headingTag="h2">
+          <component
+            :is="shippingProgressComponent"
+            :orderProgress="progress"
+          />
+        </Disclosure>
+        <Disclosure heading="Information sur les retours" headingTag="h2">
+          <component :is="textSplitterComponent" :textContent="returnNotice" />
+        </Disclosure>
+      </div>
+      <ProductsOverview :products="products" />
+      <ShippingDetails v-bind="shippingInfo" />
+      <PaymentInfo :paymentInfo="paymentInfo" />
+      <PriceOverview v-bind="priceInfo" />
     </div>
-    <ProductsOverview :products="products" />
-    <ShippingDetails v-bind="shippingInfo" />
-    <PaymentInfo :paymentInfo="paymentInfo" />
-    <PriceOverview v-bind="priceInfo" />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -77,7 +88,9 @@ export default {
     returnNotice: {
       type: Array,
       required: true,
-      validator: (prop) => prop.every((paragraph) => typeof paragraph === 'string'),
+      /* eslint-disable */
+      validator: (prop) =>
+        prop.every((paragraph) => typeof paragraph === 'string'),
     },
   },
   computed: {
@@ -98,4 +111,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/scss/_variables.scss';
+
+.order {
+  padding-top: $gutter * 2;
+
+  &__wrapper {
+    padding: 0 1rem;
+
+    &__info li {
+      margin-bottom: $gutter;
+    }
+  }
+}
 </style>

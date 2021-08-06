@@ -40,6 +40,8 @@ export default {
 
 body {
   font-family: 'Segoe UI', 'Roboto', 'Ubuntu', 'sans-serif';
+  font-size: 1.1rem;
+  font-weight: 300;
   color: $color-main;
 }
 
@@ -50,6 +52,47 @@ body {
 
 .hidden {
   display: none;
+}
+
+.bold {
+  font-weight: 400;
+}
+
+.section-heading {
+  position: relative;
+  margin-bottom: $gutter;
+
+  &__text {
+    display: block;
+    margin: 0 auto;
+    width: max-content;
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #fff;
+  }
+
+  &::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: .9rem;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $color-main;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    margin-top: .5rem;
+    width: 100%;
+    height: 2rem;
+    background: url('~@/assets/zigzag.svg') no-repeat center;
+  }
 }
 
 /*
