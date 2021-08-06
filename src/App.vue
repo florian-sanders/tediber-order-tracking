@@ -3,19 +3,34 @@
     <a href="#main-content" class="skip-link sr-only-focusable">Contenu</a>
     <AppHeader />
     <main role="main" id="main-content" tabindex="-1">
+      <OrderTracking v-bind="orderData" :returnNotice="textData.returnNotice" />
     </main>
     <aside role="complementary">
+      <Help :helpContent="textData" />
     </aside>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/Header/AppHeader.vue';
+import AppHeader from '@/components/Header/AppHeader.vue';
+import OrderTracking from '@/components/OrderTracking/OrderTracking.vue';
+import Help from '@/components/Help.vue';
+
+import orderData from '../data/orders.json';
+import textData from '../data/texts.json';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      orderData,
+      textData,
+    };
+  },
   components: {
     AppHeader,
+    OrderTracking,
+    Help,
   },
 };
 </script>
@@ -31,6 +46,10 @@ body {
 *:focus-visible {
   outline: dashed 2px $color-main;
   outline-offset: 4px;
+}
+
+.hidden {
+  display: none;
 }
 
 /*

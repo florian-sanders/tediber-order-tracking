@@ -8,7 +8,7 @@
 import cartImg from '@/assets/cart.svg';
 
 export default {
-  name: 'Cart',
+  name: 'AppCart',
   data() {
     return {
       cartImg,

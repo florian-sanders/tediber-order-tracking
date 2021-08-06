@@ -1,16 +1,16 @@
 <template>
   <header class="header" role="banner">
-    <Menu />
+    <app-menu />
     <img class="header__logo-text" :src="logoText" alt="Tediber" width="90">
-    <Cart />
+    <app-cart />
   </header>
 </template>
 
 <script>
 import logoText from '@/assets/logo-tediber-text.svg';
 
-import Menu from './Menu.vue';
-import Cart from './Cart.vue';
+import AppMenu from './AppMenu.vue';
+import AppCart from './AppCart.vue';
 
 export default {
   name: 'AppHeader',
@@ -20,8 +20,8 @@ export default {
     };
   },
   components: {
-    Menu,
-    Cart,
+    AppMenu,
+    AppCart,
   },
 };
 </script>
