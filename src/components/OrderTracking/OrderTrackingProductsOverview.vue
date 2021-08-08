@@ -1,7 +1,7 @@
 <template>
   <section class="section products">
     <h2 class="products__heading">
-      Articles (<span class="sr-only">Nombre d'articles : </span
+      {{ headingSgPlural }} (<span class="sr-only">Nombre d'articles : </span
       >{{ products.length }})
     </h2>
     <OrderTrackingProduct
@@ -20,6 +20,11 @@ export default {
   components: {
     OrderTrackingProduct,
   },
+  computed: {
+    headingSgPlural() {
+      return this.products.length > 1 ? 'Articles' : 'Article';
+    },
+  },
   props: {
     products: {
       type: Array,
@@ -37,7 +42,7 @@ export default {
   margin-top: $gutter;
 
   &__heading {
-    margin-bottom: .8rem;
+    margin-bottom: 0.8rem;
     text-transform: uppercase;
   }
 

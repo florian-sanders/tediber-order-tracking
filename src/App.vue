@@ -24,11 +24,15 @@ import Help from '@/components/Help.vue';
 import orderData from '../data/orders.json';
 import textData from '../data/texts.json';
 
+const index = Math.floor(Math.random() * 2);
+
+console.log(index);
+
 export default {
   name: 'App',
   data() {
     return {
-      orderData,
+      orderData: orderData[index],
       textData,
     };
   },

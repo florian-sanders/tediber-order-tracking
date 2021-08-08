@@ -3,7 +3,7 @@
     <h1 class="section-heading">
       <span class="section-heading__text">Suivi de commande</span>
     </h1>
-    <div class="order__flex-sections small-screen-margin">
+    <div class="section order__flex-sections small-screen-margin">
       <div class="order__flex-sections__left-half">
         <ul class="order__info">
           <li>
@@ -18,11 +18,7 @@
             <strong class="bold" v-text="formatDate(shippingDate)" />
           </li>
         </ul>
-        <Disclosure
-          heading="Suivi de commande"
-          headingTag="h2"
-          defaultOpen
-        >
+        <Disclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
           <component
             :is="shippingProgressComponent"
             :orderProgress="progress"
