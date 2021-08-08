@@ -7,7 +7,7 @@
       <ul class="price-overview__card__body">
         <li>
           Sous-total
-          <span>{{ subTotal }}</span>
+          <span>{{ subtotal }}</span>
         </li>
         <li>
           Livraison
@@ -31,7 +31,7 @@ export default {
     },
   },
   props: {
-    subTotal: {
+    subtotal: {
       type: Number,
       required: true,
     },

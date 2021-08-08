@@ -159,6 +159,17 @@ export default {
       visibility 0s ease 1s, padding 0s ease 0.2s;
     max-height: 0;
 
+    h2, h3, h4, h5 {
+      margin-bottom: $gutter-small;
+      font-size: 1rem;
+      font-weight: $bold-soft;
+      color: $color-main;
+
+      &:not(:first-child) {
+        margin-top: $gutter;
+      }
+    }
+
     &--visible {
       visibility: visible;
       opacity: 1;

@@ -1,45 +1,58 @@
 <template>
-  <section class="section order">
-    <h1 class="section-heading">
-      <span class="section-heading__text">Suivi de commande</span>
-    </h1>
-    <div class="section order__flex-sections small-screen-margin">
-      <div class="order__flex-sections__left-half">
-        <ul class="order__info">
-          <li>
-            N° de commande&nbsp;: <strong class="bold" v-text="orderId" />
-          </li>
-          <li>
-            Date de commande&nbsp;:
-            <strong class="bold" v-text="formatDate(orderDate)" />
-          </li>
-          <li>
-            Date d'expédition&nbsp;:
-            <strong class="bold" v-text="formatDate(shippingDate)" />
-          </li>
-        </ul>
-        <Disclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
-          <component
-            :is="shippingProgressComponent"
-            :orderProgress="progress"
-          />
-        </Disclosure>
-        <Disclosure heading="Informations sur les retours" headingTag="h2">
-          <component :is="textSplitterComponent" :textContent="returnNotice" />
-        </Disclosure>
-      </div>
-      <ProductsOverview :products="products" />
-    </div>
-    <ShippingDetails v-bind="shippingInfo" />
-    <PaymentInfo :paymentInfo="paymentInfo" />
-    <PriceOverview v-bind="priceInfo" />
-  </section>
+  <div>
+    <AppLoading v-if="loading" />
+    <AppError v-if="error" :type="error" />
+    <transition name="order">
+      <section class="section order" v-if="order">
+        <h1 class="section-heading">
+          <span class="section-heading__text">Suivi de commande</span>
+        </h1>
+        <div class="section order__flex-sections small-screen-margin">
+          <div class="order__flex-sections__left-half">
+            <ul class="order__info">
+              <li>
+                N° de commande&nbsp;:
+                <strong class="bold" v-text="order.orderId" />
+              </li>
+              <li>
+                Date de commande&nbsp;:
+                <strong class="bold" v-text="formatDate(order.orderDate)" />
+              </li>
+              <li>
+                Date d'expédition&nbsp;:
+                <strong class="bold" v-text="formatDate(order.shippingDate)" />
+              </li>
+            </ul>
+            <Disclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
+              <component
+                :is="shippingProgressComponent"
+                :orderProgress="order.progress"
+              />
+            </Disclosure>
+            <Disclosure heading="Informations sur les retours" headingTag="h2">
+              <component
+                :is="textSplitterComponent"
+                :textContent="returnNotice"
+              />
+            </Disclosure>
+          </div>
+          <ProductsOverview :products="order.products" />
+        </div>
+        <ShippingDetails v-bind="order" />
+        <PaymentInfo v-bind="order" />
+        <PriceOverview v-bind="order" />
+      </section>
+    </transition>
+  </div>
 </template>
 
 <script>
 import { formatDate } from '@/utility';
+import getOrder from '@/API/getOrder';
 
 import Disclosure from '@/components/Disclosure.vue';
+import AppError from '@/components/AppError.vue';
+import AppLoading from '@/components/AppLoading.vue';
 import BasicTextSplitter from '@/components/BasicTextSplitter.vue';
 import ProductsOverview from './OrderTrackingProductsOverview.vue';
 import ShippingProgress from './OrderTrackingShippingProgress.vue';
@@ -51,43 +64,17 @@ export default {
   name: 'OrderTracking',
   data() {
     return {
+      order: null,
+      error: null,
+      loading: false,
       shippingProgressComponent: 'shippingProgress',
       textSplitterComponent: 'basicTextSplitter',
     };
   },
+  created() {
+    this.fetchOrder();
+  },
   props: {
-    orderId: {
-      type: Number,
-      required: true,
-    },
-    orderDate: {
-      type: String,
-      required: true,
-    },
-    shippingDate: {
-      type: String,
-      required: true,
-    },
-    paymentInfo: {
-      type: String,
-      required: true,
-    },
-    progress: {
-      type: String,
-      required: true,
-    },
-    products: {
-      type: Array,
-      required: true,
-    },
-    shippingInfo: {
-      type: Object,
-      required: true,
-    },
-    priceInfo: {
-      type: Object,
-      required: true,
-    },
     returnNotice: {
       type: Array,
       required: true,
@@ -98,6 +85,25 @@ export default {
   },
   methods: {
     formatDate,
+    fetchOrder() {
+      this.error = null;
+      this.post = null;
+      this.loading = true;
+
+      const fetchedId = this.$route.params.orderId;
+
+      getOrder(fetchedId, (err, order) => {
+        if (this.$route.params.orderId !== fetchedId) return;
+
+        this.loading = false;
+
+        if (err) {
+          this.error = err.response.status;
+        } else {
+          this.order = order.data;
+        }
+      });
+    },
   },
   components: {
     ProductsOverview,
@@ -107,6 +113,8 @@ export default {
     ShippingDetails,
     PaymentInfo,
     PriceOverview,
+    AppError,
+    AppLoading,
   },
 };
 </script>
@@ -137,5 +145,15 @@ export default {
       }
     }
   }
+}
+
+.order-enter-active,
+.order-leave-active {
+  transition: opacity 2s;
+}
+
+.order-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="product-card">
     <img class="product-card__img" :src="imgPath" alt="" width="200" />
     <div class="product-card__body">
-      <h3 class="product-card__body__heading">{{ name }}</h3>
+      <h3 class="product-card__body__heading">{{ label }}</h3>
       <p class="product-card__body__price">{{ price }}&nbsp;€</p>
       <p>
         <span class="product-card__body__label">Taille&nbsp;:</span> {{ size }}
@@ -19,7 +19,7 @@
 export default {
   name: 'OrderTrackingProduct',
   props: {
-    name: {
+    label: {
       type: String,
       required: true,
     },

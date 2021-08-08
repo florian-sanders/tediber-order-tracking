@@ -1,7 +1,13 @@
 <template>
   <header class="header" role="banner">
     <app-menu />
-    <img class="header__logo-text" :src="logoText" alt="Tediber" width="64" />
+    <a class="header__home-link" href="/">
+      <img
+        :src="logoText"
+        alt="Tediber - Retour à l'accueil"
+        width="64"
+      />
+    </a>
     <app-cart />
   </header>
 </template>
@@ -35,6 +41,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
+  margin-bottom: 1rem;
   box-shadow: $shadow-light;
   height: 3.375rem;
 
@@ -42,9 +49,13 @@ export default {
     height: 5rem;
   }
 
-  &__logo-text {
-    width: auto;
+  .header__home-link {
     height: 80%;
+
+    & img {
+      height: 100%;
+      width: auto;
+    }
 
     @include breakpoint(desktop) {
       order: -1;

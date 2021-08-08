@@ -8,7 +8,7 @@
       id="main-content"
       tabindex="-1"
     >
-      <OrderTracking v-bind="orderData" :returnNotice="textData.returnNotice" />
+      <router-view></router-view>
     </main>
     <aside class="big-screen-centered" role="complementary">
       <Help :helpContent="textData" />
@@ -18,27 +18,19 @@
 
 <script>
 import AppHeader from '@/components/Header/AppHeader.vue';
-import OrderTracking from '@/components/OrderTracking/OrderTracking.vue';
 import Help from '@/components/Help.vue';
 
-import orderData from '../data/orders.json';
 import textData from '../data/texts.json';
-
-const index = Math.floor(Math.random() * 2);
-
-console.log(index);
 
 export default {
   name: 'App',
   data() {
     return {
-      orderData: orderData[index],
       textData,
     };
   },
   components: {
     AppHeader,
-    OrderTracking,
     Help,
   },
 };

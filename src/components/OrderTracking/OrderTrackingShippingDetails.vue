@@ -17,8 +17,8 @@
 
       <div class="shipping-info__group">
         <h3 class="shipping-info__group__heading">Vos coordonnées</h3>
-        <p>{{ recipientName }}</p>
-        <p>{{ recipientPhone }}</p>
+        <p>{{ firstname }} {{ lastname }}</p>
+        <p>{{ phone }}</p>
       </div>
 
       <div class="shipping-info__group">
@@ -46,7 +46,7 @@ export default {
       return formatDate(this.estimatedDelivery, 'long');
     },
     headingPickupOrDelivery() {
-      return this.method === 'pickup'
+      return this.poiType === 'pickup'
         ? 'Adresse de collecte'
         : 'Adresse de livraison';
     },
@@ -58,8 +58,8 @@ export default {
         home: 'à domicile',
       };
 
-      return `${stringTemplate[this.method.type]} ${
-        stringTemplate[this.method.poiType]
+      return `${stringTemplate[this.shippingStandard]} ${
+        stringTemplate[this.poiType]
       }`;
     },
   },
@@ -84,20 +84,28 @@ export default {
       type: String,
       required: true,
     },
-    recipientName: {
+    firstname: {
       type: String,
       required: true,
     },
-    recipientPhone: {
+    lastname: {
       type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
       required: true,
     },
     estimatedDelivery: {
       type: String,
       required: true,
     },
-    method: {
-      type: Object,
+    poiType: {
+      type: String,
+      required: true,
+    },
+    shippingStandard: {
+      type: String,
       required: true,
     },
   },
