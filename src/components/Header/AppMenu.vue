@@ -47,14 +47,14 @@ export default {
 @import '@/scss/_mixins.scss';
 
 .menu {
-  @include breakpoint(small-desktop) {
+  @include breakpoint(desktop) {
     flex-grow: 1;
   }
 
   &__toggle-btn {
     display: block;
 
-    @include breakpoint(small-desktop) {
+    @include breakpoint(desktop) {
       display: none;
     }
 
@@ -106,11 +106,13 @@ export default {
   &__list {
     display: none;
     text-transform: uppercase;
+    text-align: center;
 
     &__dropdown-btn {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 0 auto;
 
       &::after {
         content: '';
@@ -122,19 +124,22 @@ export default {
       }
     }
 
-    @include breakpoint(small-desktop) {
-      display: flex;
-      justify-content: space-evenly;
+    @include breakpoint(desktop) {
+
+      display: grid;
+      grid-template-columns: 12.5% 12.5% 12.5% 2fr 1fr 1fr 1fr;
+      grid-template-rows: 100%;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
       align-items: center;
-      width: 100%;
-      padding: 0;
+      padding: 0 $gutter * 2;
 
       &__logo img {
         height: 3.8rem;
         width: auto;
 
         &:hover {
-          animation: .5s linear 2 shake;
+          animation: 0.5s linear 2 shake;
         }
       }
     }
@@ -151,7 +156,7 @@ export default {
       transform: rotate(0deg);
     }
     75% {
-      transform: rotate(-20deg)
+      transform: rotate(-20deg);
     }
     100% {
       transform: rotate(0deg);
