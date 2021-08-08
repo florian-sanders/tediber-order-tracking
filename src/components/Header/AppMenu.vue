@@ -132,7 +132,29 @@ export default {
       &__logo img {
         height: 3.8rem;
         width: auto;
+
+        &:hover {
+          animation: .5s linear 2 shake;
+        }
       }
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(20deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(-20deg)
+    }
+    100% {
+      transform: rotate(0deg);
     }
   }
 }
