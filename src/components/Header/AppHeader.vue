@@ -38,15 +38,15 @@ export default {
   box-shadow: $shadow-light;
   height: 3.375rem;
 
-  @include breakpoint(desktop) {
+  @include breakpoint(small-desktop) {
     height: 5rem;
   }
 
   &__logo-text {
     width: auto;
-    height: 90%;
+    height: 80%;
 
-    @include breakpoint(desktop) {
+    @include breakpoint(small-desktop) {
       order: -1;
     }
   }
