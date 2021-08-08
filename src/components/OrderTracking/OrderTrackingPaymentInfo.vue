@@ -1,8 +1,13 @@
 <template>
-  <div>
-    <img :src="paymentMethodImg" alt="" />
-    {{ paymentMethod }}
-  </div>
+  <section class="section payment-info">
+    <h2 class="section-heading">
+      <span class="section-heading__text">Informations de paiement</span>
+    </h2>
+    <div class="payment-info__card small-screen-margin">
+      <img class="payment-info__card__img" :src="paymentMethodImg" alt="" width="34" />
+      <span class="payment-info__card__name">{{ paymentMethod }}</span>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -40,5 +45,25 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/_variables.scss';
+
+.payment-info {
+  &__card {
+    display: flex;
+    align-items: center;
+    box-shadow: $shadow;
+    padding: $gutter-small $gutter;
+
+    &__name {
+      margin-left: $gutter-small;
+      text-transform: uppercase;
+    }
+
+    &__img {
+      height: 34px;
+      width: auto;
+    }
+  }
+}
 </style>

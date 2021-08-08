@@ -1,6 +1,6 @@
 <template>
-  <button type="button" aria-expanded="false">
-    <img :src="cartImg" alt="Mon Panier" width="45">
+  <button class="cart" type="button" aria-expanded="false">
+    <img class="cart__img" :src="cartImg" alt="Mon Panier" >
   </button>
 </template>
 
@@ -17,6 +17,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.cart {
+  height: 70%;
+  &__img {
+    width: auto;
+    height: 100%;
+  }
+}
 </style>

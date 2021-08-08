@@ -1,0 +1,20 @@
+/*
+* Mobile first approach with BP set using rem to trigger 
+* mobile view when font size is increased 6 times (200%)
+*/
+
+@mixin breakpoint($point) {
+    @if $point == desktop {
+        @media screen and (min-width: 65rem) {
+            @content;
+        }
+    } @else if $point == small-desktop {
+        @media screen and (min-width: 60rem) {
+            @content;
+        }
+    } @else if $point == tablet-desktop {
+        @media screen and (min-width: 30rem) {
+            @content;
+        }
+    }
+}

@@ -27,7 +27,7 @@ export default {
     &__stripes {
       display: flex;
       flex-direction: column;
-      width: 28px;
+      width: 25px;
 
       span {
         background: $color-main;

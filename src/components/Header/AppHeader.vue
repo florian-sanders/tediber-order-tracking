@@ -1,7 +1,7 @@
 <template>
   <header class="header" role="banner">
     <app-menu />
-    <img class="header__logo-text" :src="logoText" alt="Tediber" width="90">
+    <img class="header__logo-text" :src="logoText" alt="Tediber" width="64" />
     <app-cart />
   </header>
 </template>
@@ -28,16 +28,27 @@ export default {
 
 <style lang="scss">
 @import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5rem 1.5rem;
-  box-shadow: $shadow;
+  padding: 0 1.5rem;
+  box-shadow: $shadow-light;
+  height: 3.375rem;
+
+  @include breakpoint(desktop) {
+    height: 5rem;
+  }
 
   &__logo-text {
-    max-height: 3.3rem;
+    width: auto;
+    height: 90%;
+
+    @include breakpoint(desktop) {
+      order: -1;
+    }
   }
 }
 </style>

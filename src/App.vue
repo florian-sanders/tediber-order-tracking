@@ -2,10 +2,15 @@
   <div id="app">
     <a href="#main-content" class="skip-link sr-only-focusable">Contenu</a>
     <AppHeader />
-    <main role="main" id="main-content" tabindex="-1">
+    <main
+      class="big-screen-centered"
+      role="main"
+      id="main-content"
+      tabindex="-1"
+    >
       <OrderTracking v-bind="orderData" :returnNotice="textData.returnNotice" />
     </main>
-    <aside role="complementary">
+    <aside class="big-screen-centered" role="complementary">
       <Help :helpContent="textData" />
     </aside>
   </div>
@@ -37,11 +42,13 @@ export default {
 
 <style lang="scss">
 @import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
 
 body {
-  font-family: 'Segoe UI', 'Roboto', 'Ubuntu', 'sans-serif';
-  font-size: 1.08rem;
+  font-family: 'Roboto', 'Ubuntu', 'sans-serif';
   font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.05rem;
   color: $color-main;
 }
 
@@ -55,7 +62,15 @@ body {
 }
 
 .bold {
-  font-weight: 400;
+  font-weight: $bold;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.section {
+  margin-bottom: $gutter-section;
 }
 
 .section-heading {
@@ -65,20 +80,23 @@ body {
   &__text {
     display: block;
     margin: 0 auto;
-    width: max-content;
-    padding: 0 1rem;
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    padding: 0 1.1rem;
+    width: fit-content;
+    max-width: 84%;
     background-color: #fff;
+    text-align: center;
+    font-size: 1.375rem;
+    font-weight: $bold-soft;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+    text-transform: uppercase;
   }
 
   &::before {
     content: '';
     z-index: -1;
     position: absolute;
-    top: .9rem;
+    bottom: 75%;
     display: block;
     width: 100%;
     height: 1px;
@@ -88,11 +106,26 @@ body {
   &::after {
     content: '';
     display: block;
-    margin-top: .5rem;
+    margin-top: 1rem;
     width: 100%;
-    height: 2rem;
+    height: .875rem;
     background: url('~@/assets/zigzag.svg') no-repeat center;
   }
+}
+
+.small-screen-margin {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+
+  @include breakpoint(desktop) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.big-screen-centered {
+  max-width: 1042px;
+  margin: 0 auto;
 }
 
 /*

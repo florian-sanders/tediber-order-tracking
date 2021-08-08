@@ -1,36 +1,39 @@
 <template>
-  <div>
-    <h2>Informations sur la livraison</h2>
-    <div>
-      <div>
-        <h3>{{ headingPickupOrDelivery }}</h3>
-        <p>{{ poiName }}</p>
+  <section class="section">
+    <h2 class="section-heading">
+      <span class="section-heading__text">Informations sur la livraison</span>
+    </h2>
+    <div class="shipping-info small-screen-margin">
+      <div class="shipping-info__group">
+        <h3 class="shipping-info__group__heading">
+          {{ headingPickupOrDelivery }}
+        </h3>
+        <p class="caps">{{ poiName }}</p>
         <p>{{ address }}</p>
-        <p>{{ city }}</p>
+        <p class="caps">{{ city }}</p>
         <p>{{ zip }}</p>
-        <p>{{ country }}</p>
+        <p class="caps">{{ country }}</p>
       </div>
 
-      <div>
-        <h3>Vos coordonnées</h3>
+      <div class="shipping-info__group">
+        <h3 class="shipping-info__group__heading">Vos coordonnées</h3>
         <p>{{ recipientName }}</p>
         <p>{{ recipientPhone }}</p>
       </div>
 
-      <div>
-        <h3>Livraison estimée</h3>
+      <div class="shipping-info__group">
+        <h3 class="shipping-info__group__heading">Livraison estimée</h3>
         <p>{{ formattedEstimatedDelivery }}</p>
       </div>
 
-      <div>
-        <h3>Mode de livraison</h3>
+      <div class="shipping-info__group">
+        <h3 class="shipping-info__group__heading">Mode de livraison</h3>
         <p>
-          {{ StringTemplate[method.type] }}
-          {{ StringTemplate[method.poiType] }}
+          {{ formattedDeliveryMethodText }}
         </p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -38,24 +41,26 @@ import { formatDate } from '@/utility';
 
 export default {
   name: 'OrderTrackingShippingDetails',
-  data() {
-    return {
-      StringTemplate: {
-        express: 'Livraison express',
-        standard: 'Livraison standard',
-        pickup: 'en relais colis',
-        home: 'à domicile',
-      },
-    };
-  },
   computed: {
     formattedEstimatedDelivery() {
-      return formatDate(this.estimatedDelivery);
+      return formatDate(this.estimatedDelivery, 'long');
     },
     headingPickupOrDelivery() {
       return this.method === 'pickup'
         ? 'Adresse de collecte'
         : 'Adresse de livraison';
+    },
+    formattedDeliveryMethodText() {
+      const stringTemplate = {
+        express: 'Livraison express',
+        standard: 'Livraison standard',
+        pickup: 'en relais colis',
+        home: 'à domicile',
+      };
+
+      return `${stringTemplate[this.method.type]} ${
+        stringTemplate[this.method.poiType]
+      }`;
     },
   },
   props: {
@@ -99,5 +104,45 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
+
+.shipping-info {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter;
+  padding: $gutter-small;
+  padding-bottom: 1.6rem;
+  margin-bottom: $gutter * 2;
+  box-shadow: $shadow;
+
+  @include breakpoint(small-desktop) {
+    flex-direction: row;
+    padding: $gutter;
+  }
+
+  &__group {
+    @include breakpoint(small-desktop) {
+      width: 33%;
+    }
+
+    &:not(:last-child) {
+      padding-bottom: 1rem;
+      border-bottom: solid 1px rgba(53, 53, 53, 0.247);
+
+      @include breakpoint(small-desktop) {
+        padding-bottom: 0;
+        border-bottom: none;
+        border-right: solid 1px rgba(53, 53, 53, 0.247);
+      }
+    }
+
+    &__heading {
+      margin-bottom: $gutter;
+      text-transform: uppercase;
+      font-weight: $bold;
+    }
+  }
+}
 </style>

@@ -1,8 +1,15 @@
 <template>
-  <div>
-    <h2>Articles ({{products.length}})</h2>
-    <OrderTrackingProduct v-for="product in products" :key="product.id" :product="product"/>
-  </div>
+  <section class="section products">
+    <h2 class="products__heading">
+      Articles (<span class="sr-only">Nombre d'articles : </span
+      >{{ products.length }})
+    </h2>
+    <OrderTrackingProduct
+      v-for="product in products"
+      :key="product.id"
+      v-bind="product"
+    />
+  </section>
 </template>
 
 <script>
@@ -22,5 +29,20 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
+
+.products {
+  margin-top: $gutter;
+
+  &__heading {
+    margin-bottom: .8rem;
+    text-transform: uppercase;
+  }
+
+  @include breakpoint(desktop) {
+    width: 50%;
+  }
+}
 </style>

@@ -1,22 +1,28 @@
 <template>
-  <section class="order">
+  <section class="section order">
     <h1 class="section-heading">
       <span class="section-heading__text">Suivi de commande</span>
     </h1>
-    <div class="order__wrapper">
-      <ul class="order__wrapper__info">
-        <li>N° de commande&nbsp;: <strong class="bold" v-text="orderId" /></li>
-        <li>
-          Date de commande&nbsp;:
-          <strong class="bold" v-text="formatDate(orderDate)" />
-        </li>
-        <li>
-          Date d'expédition&nbsp;:
-          <strong class="bold" v-text="formatDate(shippingDate)" />
-        </li>
-      </ul>
-      <div>
-        <Disclosure heading="Suivi de commande" headingTag="h2">
+    <div class="order__flex-sections small-screen-margin">
+      <div class="order__flex-sections__left-half">
+        <ul class="order__info">
+          <li>
+            N° de commande&nbsp;: <strong class="bold" v-text="orderId" />
+          </li>
+          <li>
+            Date de commande&nbsp;:
+            <strong class="bold" v-text="formatDate(orderDate)" />
+          </li>
+          <li>
+            Date d'expédition&nbsp;:
+            <strong class="bold" v-text="formatDate(shippingDate)" />
+          </li>
+        </ul>
+        <Disclosure
+          heading="Suivi de commande"
+          headingTag="h2"
+          defaultOpen
+        >
           <component
             :is="shippingProgressComponent"
             :orderProgress="progress"
@@ -27,10 +33,10 @@
         </Disclosure>
       </div>
       <ProductsOverview :products="products" />
-      <ShippingDetails v-bind="shippingInfo" />
-      <PaymentInfo :paymentInfo="paymentInfo" />
-      <PriceOverview v-bind="priceInfo" />
     </div>
+    <ShippingDetails v-bind="shippingInfo" />
+    <PaymentInfo :paymentInfo="paymentInfo" />
+    <PriceOverview v-bind="priceInfo" />
   </section>
 </template>
 
@@ -111,15 +117,28 @@ export default {
 
 <style lang="scss">
 @import '@/scss/_variables.scss';
+@import '@/scss/_mixins.scss';
 
 .order {
   padding-top: $gutter * 2;
 
-  &__wrapper {
-    padding: 0 1rem;
+  &__info {
+    padding-top: $gutter;
 
-    &__info li {
+    & li {
       margin-bottom: $gutter;
+    }
+  }
+
+  @include breakpoint(small-desktop) {
+    &__flex-sections {
+      display: flex;
+      flex-direction: row;
+      gap: $gutter * 2;
+
+      &__left-half {
+        width: 50%;
+      }
     }
   }
 }

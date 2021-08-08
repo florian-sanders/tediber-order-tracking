@@ -10,21 +10,21 @@
             "price": 750,
             "size": "160 x 200cm",
             "quantity": 1,
-            "imgPath": "mattress"
+            "imgPath": "img/products/mattress.jpg"
         },
         {
             "name": "L'incroyable oreiller Tediber",
             "price": 85,
             "size": "60 x 60cm",
             "quantity": 2,
-            "imgPath": "pillow"
+            "imgPath": "img/products/pillow.jpg"
         },
         {
             "name": "L'incroyable couette Tediber",
             "price": 210,
             "size": "240 x 220cm",
             "quantity": 1,
-            "imgPath": "duvet"
+            "imgPath": "img/products/duvet.jpg"
         }
     ],
     "shippingInfo": {

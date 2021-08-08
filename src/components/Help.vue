@@ -1,22 +1,42 @@
 <template>
   <div>
-    <h2>Besoin d'aide&nbsp;?</h2>
+    <h2 class="section-heading"><span class="section-heading__text">Besoin d'aide&nbsp;?</span></h2>
     <Disclosure
       heading="Foire aux questions Tediber"
       headingTag="h3"
       :mdContent="helpContent.faq"
+      isFullWidthMobile
+      isCapitalized
     >
     </Disclosure>
-    <Disclosure heading="La garantie Tediber" headingTag="h3">
-      <component :is="textSplitterComponent" :textContent="helpContent.warranty" />
+    <Disclosure
+      heading="La garantie Tediber"
+      headingTag="h3"
+      isFullWidthMobile
+      isCapitalized
+    >
+      <component
+        :is="textSplitterComponent"
+        :textContent="helpContent.warranty"
+      />
     </Disclosure>
-    <Disclosure heading="Reprise de l'ancienne literie" headingTag="h3">
+    <Disclosure
+      heading="Reprise de l'ancienne literie"
+      headingTag="h3"
+      isFullWidthMobile
+      isCapitalized
+    >
       <component
         :is="textSplitterComponent"
         :textContent="helpContent.recycling"
       />
     </Disclosure>
-    <Disclosure heading="Comment faire un retour&nbsp;?" headingTag="h3">
+    <Disclosure
+      heading="Comment faire un retour ?"
+      headingTag="h3"
+      isFullWidthMobile
+      isCapitalized
+    >
       <component
         :is="textSplitterComponent"
         :textContent="helpContent.returnNotice"
