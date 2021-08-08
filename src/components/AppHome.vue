@@ -5,11 +5,11 @@
     </h1>
 
     <ul>
-      <li><a href="order/450652">Test 1</a></li>
-      <li><a href="order/450653">Test 2</a></li>
-      <li><a href="order/450654">Test 3</a></li>
-      <li><a href="order/450655">Test 4</a></li>
-      <li><a href="order/450656">Test 5</a></li>
+      <li><router-link to="order/450652">Test 1</router-link></li>
+      <li><router-link to="order/450653">Test 2</router-link></li>
+      <li><router-link to="order/450654">Test 3</router-link></li>
+      <li><router-link to="order/450655">Test 4</router-link></li>
+      <li><router-link to="order/450656">Test 5</router-link></li>
     </ul>
   </section>
 </template>
