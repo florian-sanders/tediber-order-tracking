@@ -14,17 +14,17 @@
           Nos produits
         </button>
       </li>
-      <li><a href="/">Le concept</a></li>
-      <li><a href="/">Avis</a></li>
+      <li>Le concept</li>
+      <li>Avis</li>
       <li class="menu__list__logo">
         <router-link to="/" aria-hidden="true" tabindex="-1">
           <img :src="tediberBearImg" width="50" />
         </router-link>
       </li>
-      <li><a href="/">Pub TV</a></li>
-      <li><a href="/">Mon Compte</a></li>
-      <li><a href="/">Mag</a></li>
-      <li><a href="/">Contactez-nous</a></li>
+      <li>Pub TV</li>
+      <li>Mon Compte</li>
+      <li>Mag</li>
+      <li>Contactez-nous</li>
     </ul>
   </nav>
 </template>

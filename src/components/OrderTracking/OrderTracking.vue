@@ -126,7 +126,7 @@ export default {
 @import '@/scss/_mixins.scss';
 
 .order {
-  padding-top: $gutter * 2;
+  padding-top: $gutter;
 
   &__info {
     padding-top: $gutter;
@@ -141,6 +141,7 @@ export default {
       display: flex;
       flex-direction: row;
       gap: $gutter * 2;
+      margin-top: $gutter * 2;
 
       &__left-half {
         width: 50%;

@@ -1,5 +1,5 @@
 <template>
-  <section class="section products">
+  <section class="products">
     <h2 class="products__heading">
       {{ headingSgPlural }} (<span class="sr-only">Nombre d'articles : </span
       >{{ products.length }})
