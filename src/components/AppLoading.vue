@@ -4,8 +4,18 @@
       <span class="section-heading__text">Tediber cherche votre commande</span>
     </h1>
     <div class="loading__content">
-      <img class="loading__content__bear" :src="tediberBearImg" alt="" width="200" />
-      <img class="loading__content__glass" :src="magnifyingGlassImg" alt="" width="100" />
+      <img
+        class="loading__content__bear"
+        :src="tediberBearImg"
+        alt=""
+        width="200"
+      />
+      <img
+        class="loading__content__glass"
+        :src="magnifyingGlassImg"
+        alt=""
+        width="100"
+      />
     </div>
   </section>
 </template>
@@ -44,6 +54,16 @@ export default {
       left: 52%;
       animation: 2s linear infinite circle;
     }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 2s;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 
   @keyframes circle {

@@ -31,7 +31,7 @@
           aria-hidden="true"
           focusable="false"
         >
-          <use :xlink:href="`${arrowDown}#arrow`"></use>
+          <use :href="`${arrowDown}#arrow`"></use>
         </svg>
       </button>
     </component>
@@ -131,8 +131,6 @@ export default {
 .disclosure {
   &__toggle-btn {
     position: relative;
-    display: flex;
-    justify-content: space-between;
     width: 100%;
     padding: $gutter-small 0 $gutter-small 0.5rem;
     border-top: solid 1px $color-main;
@@ -156,7 +154,13 @@ export default {
     }
 
     &__img {
+      // cannot use flex inside button so use float
+      float: right;
       max-height: 1rem;
+      max-width: 1rem;
+      transform: translateY(50%);
+      margin-left: auto;
+      margin-right: 0;
       transition: transform 0.2s ease-out;
       stroke: $color-main;
     }
@@ -172,8 +176,6 @@ export default {
     transform: scaleY(0);
     transform-origin: top;
     opacity: 0;
-    transition: max-height 0.2s, opacity 0.5s, transform 0.5s,
-      visibility 0s ease 1s, padding 0s ease 0.2s;
     max-height: 0;
 
     h2,

@@ -42,13 +42,13 @@ export default new Vuex.Store({
 
       api.get(`/order/${orderId}`)
         .then((response) => commit('SET_ORDER', response.data))
-        .catch(({ response }) => commit('SET_ERROR', response.status))
+        .catch(({ response }) => commit('SET_ERROR', response?.status || 500))
         .finally(() => commit('SET_ISLOADING', false));
     },
     fetchTexts({ commit }) {
       api.get(`/texts`)
         .then((response) => commit('SET_TEXTS', response.data))
-        .catch(({ response }) => console.log(response.status))
+        .catch(({ response }) => console.log(response?.status || 500))
         .finally(() => commit('SET_ISLOADING', false));
     }
   },

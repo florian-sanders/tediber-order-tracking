@@ -1,50 +1,52 @@
 <template>
-  <div>
+  <transition name="fade" mode="out-in">
     <AppLoading v-if="isLoading" />
-    <AppError v-if="error" :type="error" />
-    <transition name="order">
-      <section class="section order" v-if="order">
-        <h1 class="section-heading">
-          <span class="section-heading__text">Suivi de commande</span>
-        </h1>
-        <div class="section order__flex-sections small-screen-margin">
-          <div class="order__flex-sections__left-half">
-            <ul class="order__info">
-              <li>
-                N° de commande&nbsp;:
-                <strong class="bold" v-text="order.orderId" />
-              </li>
-              <li>
-                Date de commande&nbsp;:
-                <strong class="bold" v-text="formatDate(order.orderDate)" />
-              </li>
-              <li>
-                Date d'expédition&nbsp;:
-                <strong class="bold" v-text="formatDate(order.shippingDate)" />
-              </li>
-            </ul>
-            <AppDisclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
-              <component
-                :is="shippingProgressComponent"
-                :orderProgress="order.progress"
-              />
-            </AppDisclosure>
-            <AppDisclosure
-              v-if="returnNotice"
-              heading="Informations sur les retours"
-              headingTag="h2"
-              :mdContent="returnNotice"
+    <section class="section order" v-else-if="order" key="toto">
+      <h1 class="section-heading">
+        <span class="section-heading__text">Suivi de commande</span>
+      </h1>
+      <div class="section order__flex-sections small-screen-margin">
+        <div class="order__flex-sections__left-half">
+          <ul class="order__info">
+            <li>
+              N° de commande&nbsp;:
+              <strong class="bold" v-text="order.orderId" />
+            </li>
+            <li>
+              Date de commande&nbsp;:
+              <strong class="bold" v-text="formatDate(order.orderDate)" />
+            </li>
+            <li>
+              Date d'expédition&nbsp;:
+              <strong class="bold" v-text="formatDate(order.shippingDate)" />
+            </li>
+          </ul>
+          <AppDisclosure
+            heading="Suivi de commande"
+            headingTag="h2"
+            defaultOpen
+          >
+            <component
+              :is="shippingProgressComponent"
+              :orderProgress="order.progress"
             />
-          </div>
-          <OrderTrackingProductsOverview />
+          </AppDisclosure>
+          <AppDisclosure
+            v-if="returnNotice"
+            heading="Informations sur les retours"
+            headingTag="h2"
+            :mdContent="returnNotice"
+          />
         </div>
-        <OrderTrackingShippingDetails />
-        <OrderTrackingPaymentInfo />
-        <OrderTrackingPriceOverview />
-        <OrderTrackingHelp />
-      </section>
-    </transition>
-  </div>
+        <OrderTrackingProductsOverview />
+      </div>
+      <OrderTrackingShippingDetails />
+      <OrderTrackingPaymentInfo />
+      <OrderTrackingPriceOverview />
+      <OrderTrackingHelp />
+    </section>
+    <AppError v-else :type="error" />
+  </transition>
 </template>
 
 <script>
@@ -65,7 +67,8 @@ export default {
   name: 'OrderTracking',
   data() {
     return {
-      shippingProgressComponent: 'orderTrackingShippingProgress',
+      shippingProgressComponent: 'OrderTrackingShippingProgress',
+      appLoadingComponent: 'AppLoading',
     };
   },
   created() {
@@ -87,9 +90,7 @@ export default {
   },
   methods: {
     formatDate,
-    ...mapActions([
-      'fetchOrder',
-    ]),
+    ...mapActions(['fetchOrder']),
   },
   components: {
     AppError,
@@ -134,12 +135,12 @@ export default {
   }
 }
 
-.order-enter-active,
-.order-leave-active {
-  transition: opacity 2s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
 }
 
-.order-enter,
+.fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
