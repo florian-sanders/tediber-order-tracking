@@ -57,23 +57,27 @@ export default {
     anyText() {
       return (
         /* eslint-disable */
-        this.faq.length
-          || this.warranty.length
-          || this.returnNotice.length
-          || this.recycling.length
+        this.faq
+          || this.warranty
+          || this.returnNotice
+          || this.recycling
       );
     },
+    /*
+    * these texts are not essential and we do not want the app to crash
+    * if the fetch has failed
+    */
     warranty() {
-      return this.$store.state.texts.warranty;
+      return this.$store.state.texts?.warranty;
     },
     returnNotice() {
-      return this.$store.state.texts.returnNotice;
+      return this.$store.state.texts?.returnNotice;
     },
     recycling() {
-      return this.$store.state.texts.recycling;
+      return this.$store.state.texts?.recycling;
     },
     faq() {
-      return this.$store.state.texts.faq;
+      return this.$store.state.texts?.faq;
     },
   },
 };

@@ -31,7 +31,7 @@
               />
             </Disclosure>
             <Disclosure
-              v-if="returnNotice.length"
+              v-if="returnNotice"
               heading="Informations sur les retours"
               headingTag="h2"
               :mdContent="returnNotice"
@@ -83,7 +83,7 @@ export default {
       return this.$store.state.error;
     },
     returnNotice() {
-      return this.$store.state.texts.returnNotice;
+      return this.$store.state.texts?.returnNotice;
     },
   },
   methods: {
