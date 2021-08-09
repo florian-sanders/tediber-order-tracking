@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .loading {
   margin: 5rem 0;
   padding-bottom: 3rem;

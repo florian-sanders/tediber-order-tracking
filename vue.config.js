@@ -13,7 +13,8 @@ module.exports = {
       title: 'Suivi de commande - Tediber',
       // chunks to include on this page, by default includes
       // extracted common chunks and vendor chunks.
-      chunks: ['chunk-vendors', 'chunk-common', 'index']
+      chunks: ['chunk-vendors', 'chunk-common', 'index'],
+      prefix: 'data'
     },
     // when using the entry-only string format,
     // template is inferred to be `public/subpage.html`
