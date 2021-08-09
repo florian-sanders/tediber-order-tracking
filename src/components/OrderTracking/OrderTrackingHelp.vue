@@ -10,7 +10,7 @@
     <h2 class="section-heading">
       <span class="section-heading__text">Besoin d'aide&nbsp;?</span>
     </h2>
-    <Disclosure
+    <AppDisclosure
       v-if="faq"
       heading="Foire aux questions Tediber"
       headingTag="h3"
@@ -18,7 +18,7 @@
       isFullWidthMobile
       isCapitalized
     />
-    <Disclosure
+    <AppDisclosure
       v-if="warranty"
       heading="La garantie Tediber"
       headingTag="h3"
@@ -26,7 +26,7 @@
       isFullWidthMobile
       isCapitalized
     />
-    <Disclosure
+    <AppDisclosure
       v-if="recycling"
       heading="Reprise de l'ancienne literie"
       headingTag="h3"
@@ -34,7 +34,7 @@
       isFullWidthMobile
       isCapitalized
     />
-    <Disclosure
+    <AppDisclosure
       v-if="returnNotice"
       heading="Comment faire un retour ?"
       headingTag="h3"
@@ -46,12 +46,12 @@
 </template>
 
 <script>
-import Disclosure from '@/components/Disclosure.vue';
+import AppDisclosure from '@/components/AppDisclosure.vue';
 
 export default {
   name: 'OrderTrackingHelp',
   components: {
-    Disclosure,
+    AppDisclosure,
   },
   computed: {
     anyText() {

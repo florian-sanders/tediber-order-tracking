@@ -1,6 +1,6 @@
 <template>
   <header class="header" role="banner">
-    <app-menu />
+    <AppMenu />
     <router-link class="header__home-link" to="/">
       <img
         :src="logoText"
@@ -8,7 +8,7 @@
         width="64"
       />
     </router-link>
-    <app-cart />
+    <AppCart />
   </header>
 </template>
 

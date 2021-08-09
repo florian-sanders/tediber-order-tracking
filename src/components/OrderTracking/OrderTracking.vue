@@ -24,24 +24,24 @@
                 <strong class="bold" v-text="formatDate(order.shippingDate)" />
               </li>
             </ul>
-            <Disclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
+            <AppDisclosure heading="Suivi de commande" headingTag="h2" defaultOpen>
               <component
                 :is="shippingProgressComponent"
                 :orderProgress="order.progress"
               />
-            </Disclosure>
-            <Disclosure
+            </AppDisclosure>
+            <AppDisclosure
               v-if="returnNotice"
               heading="Informations sur les retours"
               headingTag="h2"
               :mdContent="returnNotice"
             />
           </div>
-          <ProductsOverview />
+          <OrderTrackingProductsOverview />
         </div>
-        <ShippingDetails />
-        <PaymentInfo />
-        <PriceOverview />
+        <OrderTrackingShippingDetails />
+        <OrderTrackingPaymentInfo />
+        <OrderTrackingPriceOverview />
         <OrderTrackingHelp />
       </section>
     </transition>
@@ -52,21 +52,21 @@
 import { mapActions } from 'vuex';
 import { formatDate } from '@/utils';
 
-import Disclosure from '@/components/Disclosure.vue';
+import AppDisclosure from '@/components/AppDisclosure.vue';
 import AppError from '@/components/AppError.vue';
 import AppLoading from '@/components/AppLoading.vue';
-import ProductsOverview from './OrderTrackingProductsOverview.vue';
-import ShippingProgress from './OrderTrackingShippingProgress.vue';
-import ShippingDetails from './OrderTrackingShippingDetails.vue';
-import PaymentInfo from './OrderTrackingPaymentInfo.vue';
-import PriceOverview from './OrderTrackingPriceOverview.vue';
+import OrderTrackingProductsOverview from './OrderTrackingProductsOverview.vue';
+import OrderTrackingShippingProgress from './OrderTrackingShippingProgress.vue';
+import OrderTrackingShippingDetails from './OrderTrackingShippingDetails.vue';
+import OrderTrackingPaymentInfo from './OrderTrackingPaymentInfo.vue';
+import OrderTrackingPriceOverview from './OrderTrackingPriceOverview.vue';
 import OrderTrackingHelp from './OrderTrackingHelp.vue';
 
 export default {
   name: 'OrderTracking',
   data() {
     return {
-      shippingProgressComponent: 'shippingProgress',
+      shippingProgressComponent: 'orderTrackingShippingProgress',
     };
   },
   created() {
@@ -93,14 +93,14 @@ export default {
     ]),
   },
   components: {
-    ProductsOverview,
-    Disclosure,
-    ShippingProgress,
-    ShippingDetails,
-    PaymentInfo,
-    PriceOverview,
     AppError,
     AppLoading,
+    AppDisclosure,
+    OrderTrackingProductsOverview,
+    OrderTrackingShippingProgress,
+    OrderTrackingShippingDetails,
+    OrderTrackingPaymentInfo,
+    OrderTrackingPriceOverview,
     OrderTrackingHelp,
   },
 };
