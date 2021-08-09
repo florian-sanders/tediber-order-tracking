@@ -25,7 +25,14 @@
         @click="toggleisOpen"
       >
         {{ heading }}
-        <img class="disclosure__toggle-btn__img" :src="arrowDown" alt="" />
+        <svg
+          class="disclosure__toggle-btn__img"
+          viewBox="0 0 22 13"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <use :xlink:href="`${arrowDown}#arrow`"></use>
+        </svg>
       </button>
     </component>
     <transition
@@ -145,7 +152,13 @@ export default {
     }
 
     &__img {
+      max-height: 1rem;
       transition: transform 0.2s ease-out;
+      stroke: $color-main;
+    }
+
+    &:hover svg {
+      stroke: $color-secondary;
     }
   }
 
@@ -159,7 +172,10 @@ export default {
       visibility 0s ease 1s, padding 0s ease 0.2s;
     max-height: 0;
 
-    h2, h3, h4, h5 {
+    h2,
+    h3,
+    h4,
+    h5 {
       margin-bottom: $gutter-small;
       font-size: 1rem;
       font-weight: $bold-soft;
