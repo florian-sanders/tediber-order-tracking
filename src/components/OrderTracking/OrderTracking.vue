@@ -29,36 +29,37 @@
                 :orderProgress="order.progress"
               />
             </Disclosure>
-            <Disclosure heading="Informations sur les retours" headingTag="h2">
-              <component
-                :is="textSplitterComponent"
-                :textContent="returnNotice"
-              />
-            </Disclosure>
+            <Disclosure
+              v-if="texts"
+              heading="Informations sur les retours"
+              headingTag="h2"
+              :mdContent="texts.returnNotice"
+            />
           </div>
           <ProductsOverview :products="order.products" />
         </div>
         <ShippingDetails v-bind="order" />
         <PaymentInfo v-bind="order" />
         <PriceOverview v-bind="order" />
+        <order-tracking-help v-if="texts" v-bind="texts" />
       </section>
     </transition>
   </div>
 </template>
 
 <script>
-import { formatDate } from '@/utility';
+import { formatDate } from '@/utils';
 import getOrder from '@/API/getOrder';
 
 import Disclosure from '@/components/Disclosure.vue';
 import AppError from '@/components/AppError.vue';
 import AppLoading from '@/components/AppLoading.vue';
-import BasicTextSplitter from '@/components/BasicTextSplitter.vue';
 import ProductsOverview from './OrderTrackingProductsOverview.vue';
 import ShippingProgress from './OrderTrackingShippingProgress.vue';
 import ShippingDetails from './OrderTrackingShippingDetails.vue';
 import PaymentInfo from './OrderTrackingPaymentInfo.vue';
 import PriceOverview from './OrderTrackingPriceOverview.vue';
+import OrderTrackingHelp from './OrderTrackingHelp.vue';
 
 export default {
   name: 'OrderTracking',
@@ -68,26 +69,23 @@ export default {
       error: null,
       loading: false,
       shippingProgressComponent: 'shippingProgress',
-      textSplitterComponent: 'basicTextSplitter',
     };
   },
   created() {
     this.fetchOrder();
   },
   props: {
-    returnNotice: {
-      type: Array,
-      required: true,
-      /* eslint-disable */
-      validator: (prop) =>
-        prop.every((paragraph) => typeof paragraph === 'string'),
+    // help texts are not essential, only displayed if they exist.
+    texts: {
+      type: Object,
     },
   },
   methods: {
     formatDate,
     fetchOrder() {
+      // get the order using route parameter. Display loader while fetching
       this.error = null;
-      this.post = null;
+      this.order = null;
       this.loading = true;
 
       const fetchedId = this.$route.params.orderId;
@@ -98,6 +96,10 @@ export default {
         this.loading = false;
 
         if (err) {
+          /*
+          * error status is used to display relevant content in the error page
+          * to avoid showing 404 page when server is down for instance.
+          */
           this.error = err.response.status;
         } else {
           this.order = order.data;
@@ -109,12 +111,12 @@ export default {
     ProductsOverview,
     Disclosure,
     ShippingProgress,
-    BasicTextSplitter,
     ShippingDetails,
     PaymentInfo,
     PriceOverview,
     AppError,
     AppLoading,
+    OrderTrackingHelp,
   },
 };
 </script>

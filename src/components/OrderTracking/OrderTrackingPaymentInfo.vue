@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { firstLetterToUpper } from '@/utility';
+import { firstLetterToUpper } from '@/utils';
 
 import visaImg from '@/assets/payment-visa.jpg';
 import cbImg from '@/assets/payment-cb.png';
@@ -33,6 +33,7 @@ export default {
       return firstLetterToUpper(this.paymentInfo);
     },
     paymentMethodImg() {
+      // get the right img depending on the payment method (cb, visa, mastercard)
       return this.imgPaths[this.paymentInfo];
     },
   },

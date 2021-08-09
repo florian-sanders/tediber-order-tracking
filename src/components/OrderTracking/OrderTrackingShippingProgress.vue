@@ -49,14 +49,31 @@ export default {
   },
   computed: {
     currentStepIndex() {
+      /*
+      * get the current step index to know if this step is done or not
+      * step is considered done if it preceeds the last step done sent
+      * by the api (orderProgress).
+      * i.e: if orderProgress = shipped, then it is processed, sent and
+      * shipped.
+      */
       return this.shippingSteps.indexOf(this.orderProgress);
     },
     orderStatus() {
+      /*
+      * for blind users, specify the current status of the order
+      * most users see it at first glance looking at the images but
+      * they cannot so this makes up for it. If they want, they can
+      * still read the details after.
+      */
       return this.shippingStepsFr[this.currentStepIndex];
     },
   },
   methods: {
     getImgUrl(pic) {
+      /*
+      * get the image corresponding to the step. This is based on image names
+      * which might not be the most robust method.
+      */
       return this[`${pic}Img`];
     },
   },

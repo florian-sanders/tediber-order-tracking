@@ -85,6 +85,7 @@ export default {
     },
   },
   beforeCreate() {
+    // make sure each disclosure area has a unique id for aria-controls
     this.uuid = `disclosure-${uuid}`;
     uuid += 1;
   },
@@ -101,11 +102,13 @@ export default {
       type: String,
       required: true,
     },
+    // must be h1 - h6
     headingTag: {
       type: String,
       validate: (prop) => prop.match(/h[1-6]/gim),
       required: true,
     },
+    // no padding for arrow img in mobile view
     isFullWidthMobile: {
       type: Boolean,
       default: false,
@@ -114,6 +117,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    // can display a component, parsed markdown or both
     childComponent: String,
     mdContent: String,
   },

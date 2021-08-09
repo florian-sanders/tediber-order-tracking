@@ -1,4 +1,7 @@
 /* eslint-disable */
+/*
+* Tools used by components. Mostly data formatting.
+*/
 
 export const formatDate = (dateAsString, displayWeekDay = '') => {
   const options = {

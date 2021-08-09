@@ -8,30 +8,50 @@
       id="main-content"
       tabindex="-1"
     >
-      <router-view></router-view>
+      <router-view />
+      <router-view name="OrderTracking" :texts="texts" />
     </main>
-    <aside class="big-screen-centered" role="complementary">
-      <Help :helpContent="textData" />
-    </aside>
   </div>
 </template>
 
 <script>
 import AppHeader from '@/components/Header/AppHeader.vue';
-import Help from '@/components/Help.vue';
 
-import textData from '../data/texts.json';
+import getTexts from './API/getTexts';
 
 export default {
   name: 'App',
   data() {
     return {
-      textData,
+      texts: null,
     };
   },
   components: {
     AppHeader,
-    Help,
+  },
+  created() {
+    /*
+     * Texts are common to every order and they are not essential to the page
+     * try to fetch them once and for all upon loading the App, avoid fetching them again
+     * if fetch fails, order component is displayed with no help text
+     */
+    this.fetchTexts();
+  },
+  watch: {
+    $route() {
+      // if texts failed to load, try again at next page change
+      if (!this.texts) this.fetchTexts();
+    },
+  },
+  methods: {
+    fetchTexts() {
+      this.texts = null;
+
+      getTexts((err, texts) => {
+        // since texts are not essential, we do not throw any error
+        if (!err) this.texts = texts.data;
+      });
+    },
   },
 };
 </script>
@@ -104,7 +124,7 @@ body {
     display: block;
     margin-top: 1rem;
     width: 100%;
-    height: .875rem;
+    height: 0.875rem;
     background: url('~@/assets/zigzag.svg') no-repeat center;
   }
 }

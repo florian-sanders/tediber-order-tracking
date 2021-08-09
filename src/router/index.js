@@ -5,24 +5,25 @@ import OrderTracking from '@/components/OrderTracking/OrderTracking.vue';
 import AppError from '@/components/AppError.vue';
 import AppHome from '@/components/AppHome.vue';
 
-import textData from '../../data/texts.json';
-
 Vue.use(VueRouter);
 
 const routes = [
   {
+    name: 'HomePage',
     path: '/',
     component: AppHome,
   },
   {
+    name: 'OrderTrackingPage',
     path: '/order/:orderId',
-    component: OrderTracking,
-    props: () => ({ returnNotice: textData.returnNotice }),
+    components: {
+      OrderTracking,
+    },
   },
   {
+    name: 'NotFound',
     path: '/:catchAll(.*)',
     component: AppError,
-    name: 'NotFound',
     props: () => ({ type: 404 }),
   },
 ];

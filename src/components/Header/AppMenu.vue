@@ -17,9 +17,9 @@
       <li><a href="/">Le concept</a></li>
       <li><a href="/">Avis</a></li>
       <li class="menu__list__logo">
-        <a href="/" aria-hidden="true" tabindex="-1"
-          ><img :src="tediberBearImg" width="50"
-        /></a>
+        <router-link to="/" aria-hidden="true" tabindex="-1">
+          <img :src="tediberBearImg" width="50" />
+        </router-link>
       </li>
       <li><a href="/">Pub TV</a></li>
       <li><a href="/">Mon Compte</a></li>
@@ -125,7 +125,6 @@ export default {
     }
 
     @include breakpoint(desktop) {
-
       display: grid;
       grid-template-columns: 12.5% 12.5% 12.5% 2fr 1fr 1fr 1fr;
       grid-template-rows: 100%;

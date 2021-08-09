@@ -37,12 +37,13 @@
 </template>
 
 <script>
-import { formatDate } from '@/utility';
+import { formatDate } from '@/utils';
 
 export default {
   name: 'OrderTrackingShippingDetails',
   computed: {
     formattedEstimatedDelivery() {
+      // format the date with the week-day as well as the usual format
       return formatDate(this.estimatedDelivery, 'long');
     },
     headingPickupOrDelivery() {
@@ -51,6 +52,12 @@ export default {
         : 'Adresse de livraison';
     },
     formattedDeliveryMethodText() {
+      /*
+      * API sends strings like "express", "standard", "pickup", "home"
+      * to specify the delivery method. We use an object to match these strings
+      * with their proper formatted text.
+      * This is not the best solution, maybe this should be processed by the API ?
+      */
       const stringTemplate = {
         express: 'Livraison express',
         standard: 'Livraison standard',

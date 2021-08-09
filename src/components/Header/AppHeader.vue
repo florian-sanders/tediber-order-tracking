@@ -1,13 +1,13 @@
 <template>
   <header class="header" role="banner">
     <app-menu />
-    <a class="header__home-link" href="/">
+    <router-link class="header__home-link" to="/">
       <img
         :src="logoText"
         alt="Tediber - Retour à l'accueil"
         width="64"
       />
-    </a>
+    </router-link>
     <app-cart />
   </header>
 </template>
