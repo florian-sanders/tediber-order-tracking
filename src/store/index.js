@@ -29,6 +29,11 @@ export default new Vuex.Store({
     /* eslint-disable */
     fetchOrder({ commit }, orderId) {
       commit('SET_ERROR', null);
+
+      /*
+      * if orderId is not composed only of number,
+      * set error and do not call the API
+      */
       if (!orderId.match(/^\d+$/)) {
         return commit('SET_ERROR', 404);
       }

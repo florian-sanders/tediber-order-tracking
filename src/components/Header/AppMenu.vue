@@ -68,37 +68,6 @@ export default {
         border-radius: 10px;
         height: 3px;
         margin: 3px 0;
-        transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-      }
-
-      span:nth-of-type(1) {
-        width: 100%;
-      }
-
-      span:nth-of-type(2) {
-        width: 100%;
-      }
-
-      span:nth-of-type(3) {
-        width: 100%;
-      }
-
-      &--cross {
-        span:nth-of-type(1) {
-          transform-origin: bottom;
-          transform: rotatez(45deg) translate(5px, 0px);
-        }
-
-        span:nth-of-type(2) {
-          transform-origin: top;
-          transform: rotatez(-45deg);
-        }
-
-        span:nth-of-type(3) {
-          transform-origin: bottom;
-          width: 50%;
-          transform: translate(16px, -7px) rotatez(45deg);
-        }
       }
     }
   }
