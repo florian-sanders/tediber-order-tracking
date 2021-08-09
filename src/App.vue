@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <p class="sr-only" tabindex="-1" ref="pageTitle">{{pageTitle}}</p>
     <a href="#main-content" class="skip-link sr-only-focusable">Contenu</a>
-    <AppHeader />
+    <AppHeader/>
     <main
       class="big-screen-centered"
       role="main"
@@ -30,10 +31,21 @@ export default {
      */
     this.fetchTexts();
   },
+  computed: {
+    pageTitle() {
+      return document.title;
+    },
+  },
   watch: {
     $route() {
       // if texts failed to load, try again at next page change
       if (!this.$store.state.texts) this.fetchTexts();
+
+      /*
+      * everytime the page changes, place focus on the page title container.
+      * Users are placed back at the top of the page and thus made aware of page change
+      */
+      this.$refs.pageTitle.focus();
     },
   },
   methods: {

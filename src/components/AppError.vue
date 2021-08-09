@@ -9,6 +9,9 @@
 <script>
 export default {
   name: 'AppError',
+  mounted() {
+    document.title = 'Erreur - Test Tediber';
+  },
 };
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ error }}
     <AppLoading v-if="isLoading" />
     <AppError v-if="error" :type="error" />
     <transition name="order">
