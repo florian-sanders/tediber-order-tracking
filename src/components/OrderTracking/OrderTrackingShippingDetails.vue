@@ -69,51 +69,38 @@ export default {
         stringTemplate[this.poiType]
       }`;
     },
-  },
-  props: {
-    poiName: {
-      type: String,
-      required: true,
+    poiName() {
+      return this.$store.state.order.poiName;
     },
-    address: {
-      type: String,
-      required: true,
+    address() {
+      return this.$store.state.order.address;
     },
-    city: {
-      type: String,
-      required: true,
+    city() {
+      return this.$store.state.order.city;
     },
-    zip: {
-      type: Number,
-      required: true,
+    zip() {
+      return this.$store.state.order.zip;
     },
-    country: {
-      type: String,
-      required: true,
+    country() {
+      return this.$store.state.order.country;
     },
-    firstname: {
-      type: String,
-      required: true,
+    firstname() {
+      return this.$store.state.order.firstname;
     },
-    lastname: {
-      type: String,
-      required: true,
+    lastname() {
+      return this.$store.state.order.lastname;
     },
-    phone: {
-      type: Number,
-      required: true,
+    phone() {
+      return this.$store.state.order.phone;
     },
-    estimatedDelivery: {
-      type: String,
-      required: true,
+    estimatedDelivery() {
+      return this.$store.state.order.estimatedDelivery;
     },
-    poiType: {
-      type: String,
-      required: true,
+    poiType() {
+      return this.$store.state.order.poiType;
     },
-    shippingStandard: {
-      type: String,
-      required: true,
+    shippingStandard() {
+      return this.$store.state.order.shippingStandard;
     },
   },
 };

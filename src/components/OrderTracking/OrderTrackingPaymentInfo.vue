@@ -4,7 +4,12 @@
       <span class="section-heading__text">Informations de paiement</span>
     </h2>
     <div class="payment-info__card small-screen-margin">
-      <img class="payment-info__card__img" :src="paymentMethodImg" alt="" width="34" />
+      <img
+        class="payment-info__card__img"
+        :src="paymentMethodImg"
+        alt=""
+        width="34"
+      />
       <span class="payment-info__card__name">{{ paymentMethod }}</span>
     </div>
   </section>
@@ -36,11 +41,8 @@ export default {
       // get the right img depending on the payment method (cb, visa, mastercard)
       return this.imgPaths[this.paymentInfo];
     },
-  },
-  props: {
-    paymentInfo: {
-      type: String,
-      required: true,
+    paymentInfo() {
+      return this.$store.state.order.paymentInfo;
     },
   },
 };

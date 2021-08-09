@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <aside class="section">
+  <aside class="section" v-if="anyText">
     <h2 class="section-heading">
       <span class="section-heading__text">Besoin d'aide&nbsp;?</span>
     </h2>
@@ -53,11 +53,28 @@ export default {
   components: {
     Disclosure,
   },
-  props: {
-    warranty: String,
-    returnNotice: String,
-    recycling: String,
-    faq: String,
+  computed: {
+    anyText() {
+      return (
+        /* eslint-disable */
+        this.faq.length
+          || this.warranty.length
+          || this.returnNotice.length
+          || this.recycling.length
+      );
+    },
+    warranty() {
+      return this.$store.state.texts.warranty;
+    },
+    returnNotice() {
+      return this.$store.state.texts.returnNotice;
+    },
+    recycling() {
+      return this.$store.state.texts.recycling;
+    },
+    faq() {
+      return this.$store.state.texts.faq;
+    },
   },
 };
 </script>

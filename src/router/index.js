@@ -16,9 +16,7 @@ const routes = [
   {
     name: 'OrderTrackingPage',
     path: '/order/:orderId',
-    components: {
-      OrderTracking,
-    },
+    component: OrderTracking,
   },
   {
     name: 'NotFound',

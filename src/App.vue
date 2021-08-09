@@ -9,23 +9,16 @@
       tabindex="-1"
     >
       <router-view />
-      <router-view name="OrderTracking" :texts="texts" />
     </main>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import AppHeader from '@/components/Header/AppHeader.vue';
-
-import getTexts from './API/getTexts';
 
 export default {
   name: 'App',
-  data() {
-    return {
-      texts: null,
-    };
-  },
   components: {
     AppHeader,
   },
@@ -40,18 +33,11 @@ export default {
   watch: {
     $route() {
       // if texts failed to load, try again at next page change
-      if (!this.texts) this.fetchTexts();
+      if (!this.$store.state.texts) this.fetchTexts();
     },
   },
   methods: {
-    fetchTexts() {
-      this.texts = null;
-
-      getTexts((err, texts) => {
-        // since texts are not essential, we do not throw any error
-        if (!err) this.texts = texts.data;
-      });
-    },
+    ...mapActions(['fetchTexts']),
   },
 };
 </script>

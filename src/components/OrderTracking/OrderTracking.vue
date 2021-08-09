@@ -1,6 +1,7 @@
 <template>
   <div>
-    <AppLoading v-if="loading" />
+    {{ error }}
+    <AppLoading v-if="isLoading" />
     <AppError v-if="error" :type="error" />
     <transition name="order">
       <section class="section order" v-if="order">
@@ -30,26 +31,26 @@
               />
             </Disclosure>
             <Disclosure
-              v-if="texts"
+              v-if="returnNotice.length"
               heading="Informations sur les retours"
               headingTag="h2"
-              :mdContent="texts.returnNotice"
+              :mdContent="returnNotice"
             />
           </div>
-          <ProductsOverview :products="order.products" />
+          <ProductsOverview />
         </div>
-        <ShippingDetails v-bind="order" />
-        <PaymentInfo v-bind="order" />
-        <PriceOverview v-bind="order" />
-        <order-tracking-help v-if="texts" v-bind="texts" />
+        <ShippingDetails />
+        <PaymentInfo />
+        <PriceOverview />
+        <OrderTrackingHelp />
       </section>
     </transition>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { formatDate } from '@/utils';
-import getOrder from '@/API/getOrder';
 
 import Disclosure from '@/components/Disclosure.vue';
 import AppError from '@/components/AppError.vue';
@@ -65,47 +66,31 @@ export default {
   name: 'OrderTracking',
   data() {
     return {
-      order: null,
-      error: null,
-      loading: false,
       shippingProgressComponent: 'shippingProgress',
     };
   },
   created() {
-    this.fetchOrder();
+    this.fetchOrder(this.$route.params.orderId);
   },
-  props: {
-    // help texts are not essential, only displayed if they exist.
-    texts: {
-      type: Object,
+  computed: {
+    order() {
+      return this.$store.state.order;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+    error() {
+      return this.$store.state.error;
+    },
+    returnNotice() {
+      return this.$store.state.texts.returnNotice;
     },
   },
   methods: {
     formatDate,
-    fetchOrder() {
-      // get the order using route parameter. Display loader while fetching
-      this.error = null;
-      this.order = null;
-      this.loading = true;
-
-      const fetchedId = this.$route.params.orderId;
-
-      getOrder(fetchedId, (err, order) => {
-        if (this.$route.params.orderId !== fetchedId) return;
-
-        this.loading = false;
-
-        if (err) {
-          /*
-          * error status is used to display relevant content in the error page
-          * to avoid showing 404 page when server is down for instance.
-          */
-          this.error = err.response.status;
-        } else {
-          this.order = order.data;
-        }
-      });
-    },
+    ...mapActions([
+      'fetchOrder',
+    ]),
   },
   components: {
     ProductsOverview,

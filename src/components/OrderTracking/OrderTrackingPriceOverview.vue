@@ -29,19 +29,14 @@ export default {
     formattedShippingFee() {
       return this.shippingFee === 0 ? 'Gratuite' : this.shippingFee;
     },
-  },
-  props: {
-    subtotal: {
-      type: Number,
-      required: true,
+    subtotal() {
+      return this.$store.state.order.subtotal;
     },
-    shippingFee: {
-      type: Number,
-      required: true,
+    shippingFee() {
+      return this.$store.state.order.shippingFee;
     },
-    total: {
-      type: Number,
-      required: true,
+    total() {
+      return this.$store.state.order.total;
     },
   },
 };

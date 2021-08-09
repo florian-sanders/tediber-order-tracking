@@ -7,7 +7,7 @@
     <OrderTrackingProduct
       v-for="product in products"
       :key="product.id"
-      v-bind="product"
+      :product="product"
     />
   </section>
 </template>
@@ -24,11 +24,8 @@ export default {
     headingSgPlural() {
       return this.products.length > 1 ? 'Articles' : 'Article';
     },
-  },
-  props: {
-    products: {
-      type: Array,
-      required: true,
+    products() {
+      return this.$store.state.order.products;
     },
   },
 };

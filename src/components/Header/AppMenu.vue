@@ -18,7 +18,7 @@
       <li>Avis</li>
       <li class="menu__list__logo">
         <router-link to="/" aria-hidden="true" tabindex="-1">
-          <img :src="tediberBearImg" width="50" />
+          <img :src="tediberBearImg" width="50" alt="" />
         </router-link>
       </li>
       <li>Pub TV</li>

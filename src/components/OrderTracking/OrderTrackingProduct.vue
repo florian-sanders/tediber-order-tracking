@@ -1,15 +1,15 @@
 <template>
   <div class="product-card">
-    <img class="product-card__img" :src="imgPath" alt="" width="200" />
+    <img class="product-card__img" :src="product.imgPath" alt="" width="200" />
     <div class="product-card__body">
-      <h3 class="product-card__body__heading">{{ label }}</h3>
-      <p class="product-card__body__price">{{ price }}&nbsp;€</p>
+      <h3 class="product-card__body__heading">{{ product.label }}</h3>
+      <p class="product-card__body__price">{{ product.price }}&nbsp;€</p>
       <p>
-        <span class="product-card__body__label">Taille&nbsp;:</span> {{ size }}
+        <span class="product-card__body__label">Taille&nbsp;:</span> {{ product.size }}
       </p>
       <p>
         <span class="product-card__body__label" aria-hidden="true">Qté</span>
-        <span class="sr-only">Quantité</span>&nbsp;: {{ quantity }}
+        <span class="sr-only">Quantité</span>&nbsp;: {{ product.quantity }}
       </p>
     </div>
   </div>
@@ -19,25 +19,17 @@
 export default {
   name: 'OrderTrackingProduct',
   props: {
-    label: {
-      type: String,
+    product: {
+      type: Object,
       required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    size: {
-      type: String,
-      required: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    imgPath: {
-      type: String,
-      required: true,
+      /* eslint-disable */
+      validator: (prop) => {
+        return typeof prop.label === 'string'
+          && typeof prop.price === 'number'
+          && typeof prop.imgPath === 'string'
+          && typeof prop.size === 'string'
+          && typeof prop.quantity === 'number';
+      },
     },
   },
 };
