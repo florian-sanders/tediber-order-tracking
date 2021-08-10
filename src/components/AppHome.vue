@@ -46,6 +46,10 @@
           <h2 class="flexed-content__more-info__heading">
             Plus d'informations
           </h2>
+          <p class="flexed-content__more-info__note bold">
+            Note&nbsp;: Dans le menu de navigation, seuls les liens de retour
+            vers l'accueil sont fonctionnels.
+          </p>
           <AppDisclosure
             heading="Etapes clés"
             headingTag="h3"
@@ -171,6 +175,10 @@ export default {
     &__heading {
       font-size: 1.2rem;
       margin-bottom: $gutter;
+    }
+
+    &__note {
+      margin: 1rem 0;
     }
   }
 }
