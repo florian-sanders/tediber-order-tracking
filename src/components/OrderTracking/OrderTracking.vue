@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" mode="out-in">
     <AppLoading v-if="isLoading" />
-    <section class="section order" v-else-if="order" key="toto">
+    <section class="section order" v-else-if="order">
       <h1 class="section-heading">
         <span class="section-heading__text">Suivi de commande</span>
       </h1>

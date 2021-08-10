@@ -49,6 +49,9 @@ export default new Vuex.Store({
       commit('SET_ORDER', null);
     },
     fetchTexts({ commit }) {
+
+      commit('SET_ISLOADING', true);
+
       api.get(`/texts`)
         .then((response) => commit('SET_TEXTS', response.data))
         .catch(({ response }) => console.log(response?.status || 500))

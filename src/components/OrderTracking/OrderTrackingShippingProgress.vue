@@ -13,7 +13,7 @@
           alt=""
           rel="preload"
           :key="`${step}Img`"
-          height="80"
+          height="40"
         />
         <span
           aria-hidden="true"

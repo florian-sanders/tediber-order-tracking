@@ -41,58 +41,65 @@
           >
         </li>
       </ul>
-      <div class="flexed-content__more-info" v-if="textsLoaded">
-        <h2 class="flexed-content__more-info__heading">Plus d'informations</h2>
-        <AppDisclosure
-          heading="Etapes clés"
-          headingTag="h3"
-          defaultOpen
-          isCapitalized
-          :mdContent="steps"
-        />
-        <AppDisclosure
-          heading="Choix techniques (et doutes)"
-          headingTag="h3"
-          isCapitalized
-          :mdContent="choices"
-        />
-        <AppDisclosure
-          heading="Navigateurs testés"
-          headingTag="h3"
-          isCapitalized
-          :mdContent="tests"
-        />
-        <AppDisclosure heading="API" headingTag="h3" :mdContent="api" />
-        <AppDisclosure
-          heading="Conventions et nommage"
-          headingTag="h3"
-          isCapitalized
-          :mdContent="naming"
-        />
-        <AppDisclosure
-          heading="Expérience Utilisateur"
-          headingTag="h3"
-          isCapitalized
-          :mdContent="ux"
-        />
-        <AppDisclosure
-          heading="Accessibilité"
-          headingTag="h3"
-          isCapitalized
-          :mdContent="a11y"
-        />
-      </div>
+      <transition name="fade" mode="out-in">
+        <div class="flexed-content__more-info" v-if="textsLoaded">
+          <h2 class="flexed-content__more-info__heading">
+            Plus d'informations
+          </h2>
+          <AppDisclosure
+            heading="Etapes clés"
+            headingTag="h3"
+            defaultOpen
+            isCapitalized
+            :mdContent="steps"
+          />
+          <AppDisclosure
+            heading="Choix techniques (et doutes)"
+            headingTag="h3"
+            isCapitalized
+            :mdContent="choices"
+          />
+          <AppDisclosure
+            heading="Navigateurs testés"
+            headingTag="h3"
+            isCapitalized
+            :mdContent="tests"
+          />
+          <AppDisclosure heading="API" headingTag="h3" :mdContent="api" />
+          <AppDisclosure
+            heading="Conventions et nommage"
+            headingTag="h3"
+            isCapitalized
+            :mdContent="naming"
+          />
+          <AppDisclosure
+            heading="Expérience Utilisateur"
+            headingTag="h3"
+            isCapitalized
+            :mdContent="ux"
+          />
+          <AppDisclosure
+            heading="Accessibilité"
+            headingTag="h3"
+            isCapitalized
+            :mdContent="a11y"
+          />
+        </div>
+        <TediberLoader class="flexed-content__loader" v-else-if="isLoading" />
+      </transition>
     </div>
   </section>
 </template>
 
 <script>
-import AppDisclosure from '@/components/AppDisclosure.vue';
+import AppDisclosure from './AppDisclosure.vue';
+import TediberLoader from './TediberLoader.vue';
 
 export default {
   name: 'AppHome',
   components: {
     AppDisclosure,
+    TediberLoader,
   },
   computed: {
     textsLoaded() {
@@ -118,6 +125,9 @@ export default {
     },
     a11y() {
       return this.$store.state.texts.a11y;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
     },
   },
 };
@@ -149,6 +159,10 @@ export default {
     }
   }
 
+  &__loader {
+    margin: 0 auto;
+  }
+
   &__more-info {
     @include breakpoint(desktop) {
       max-width: 50%;
@@ -159,5 +173,16 @@ export default {
       margin-bottom: $gutter;
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
 }
 </style>
