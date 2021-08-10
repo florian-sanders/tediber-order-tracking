@@ -127,6 +127,7 @@ export default {
 <style lang="scss">
 @import '@/scss/_variables.scss';
 @import '@/scss/_mixins.scss';
+@import '@/scss/_basicstyles.scss';
 
 .disclosure {
   &__toggle-btn {
@@ -177,20 +178,6 @@ export default {
     transform-origin: top;
     opacity: 0;
     max-height: 0;
-
-    h2,
-    h3,
-    h4,
-    h5 {
-      margin-bottom: $gutter-small;
-      font-size: 1rem;
-      font-weight: $bold-soft;
-      color: $color-main;
-
-      &:not(:first-child) {
-        margin-top: $gutter;
-      }
-    }
 
     &--visible {
       visibility: visible;

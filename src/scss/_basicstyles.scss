@@ -1,0 +1,45 @@
+.disclosure__content {
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-bottom: $gutter-small;
+        font-size: 1rem;
+        font-weight: $bold-soft;
+        color: $color-main;
+
+        &:not(:first-child) {
+            margin-top: $gutter;
+        }
+    }
+
+    p:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: circle;
+        padding-left: 0.5rem;
+    }
+
+    ol {
+        list-style: decimal;
+        padding-left: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    strong {
+        font-weight: $bold;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}

@@ -74,6 +74,9 @@ export default {
   created() {
     this.fetchOrder(this.$route.params.orderId);
   },
+  destroyed() {
+    this.resetOrder();
+  },
   computed: {
     order() {
       return this.$store.state.order;
@@ -90,7 +93,7 @@ export default {
   },
   methods: {
     formatDate,
-    ...mapActions(['fetchOrder']),
+    ...mapActions(['fetchOrder', 'resetOrder']),
   },
   components: {
     AppError,
@@ -111,7 +114,7 @@ export default {
 @import '@/scss/_mixins.scss';
 
 .order {
-  padding-top: $gutter;
+  padding: $gutter 0;
 
   &__info {
     padding-top: $gutter;
@@ -137,11 +140,12 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s;
+  transition: opacity 1s, transform 1s;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  transform: scale(0.8)
 }
 </style>

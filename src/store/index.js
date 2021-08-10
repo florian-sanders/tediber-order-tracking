@@ -45,11 +45,14 @@ export default new Vuex.Store({
         .catch(({ response }) => commit('SET_ERROR', response?.status || 500))
         .finally(() => commit('SET_ISLOADING', false));
     },
+    resetOrder({ commit }) {
+      commit('SET_ORDER', null);
+    },
     fetchTexts({ commit }) {
       api.get(`/texts`)
         .then((response) => commit('SET_TEXTS', response.data))
         .catch(({ response }) => console.log(response?.status || 500))
         .finally(() => commit('SET_ISLOADING', false));
-    }
+    },
   },
 });
