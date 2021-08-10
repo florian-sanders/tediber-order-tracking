@@ -28,7 +28,7 @@ const routes = [
     name: 'NotFound',
     path: '/:catchAll(.*)',
     component: AppError,
-    props: () => ({ type: 404 }),
+    props: () => ({ errorTypeProp: 404 }),
     meta: {
       title: 'Erreur - Test Tediber',
     },

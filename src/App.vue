@@ -7,7 +7,6 @@
       class="big-screen-centered"
       role="main"
       id="main-content"
-      tabindex="-1"
     >
       <router-view />
     </main>
@@ -66,11 +65,6 @@ body {
   font-size: 0.9rem;
   line-height: 1.05rem;
   color: $color-main;
-}
-
-*:focus-visible {
-  outline: dashed 2px $color-main;
-  outline-offset: 4px;
 }
 
 .hidden {

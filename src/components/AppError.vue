@@ -62,7 +62,7 @@ export default {
       return this.$store.state.isLoading;
     },
     errorType() {
-      return this.$store.state.error;
+      return this.$store.state.error || this.errorTypeProp;
     },
     heading() {
       return this[`texts${this.errorType}`].heading;
@@ -73,6 +73,9 @@ export default {
     line2() {
       return this[`texts${this.errorType}`].line2;
     },
+  },
+  props: {
+    errorTypeProp: Number,
   },
   components: {
     AppLoading,

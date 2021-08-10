@@ -177,15 +177,15 @@ export default {
     transform: scaleY(0);
     transform-origin: top;
     opacity: 0;
-    max-height: 0;
+    position: absolute;
 
     &--visible {
       visibility: visible;
+      position: relative;
       opacity: 1;
       padding: $gutter $gutter-small;
       transform: scaleY(1);
-      max-height: 100%;
-      transition: max-height 0.5s, opacity 0.3s, transform 0.5s;
+      transition: opacity 0.3s, transform 0.5s;
     }
   }
 }

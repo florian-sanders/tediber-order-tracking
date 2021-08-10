@@ -63,7 +63,11 @@ Use in conjunction with .sr-only to only display content when it's focused.
   white-space: normal !important;
 }
 
-main:focus:not(:focus-visible) { outline: none }
+*:focus-visible {
+  outline: dashed 2px $color-main;
+  outline-offset: 4px;
+}
+
 
 .skip-link {
   top: 6rem;
