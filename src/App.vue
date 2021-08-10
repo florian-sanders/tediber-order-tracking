@@ -147,7 +147,6 @@ body {
 .skip-link {
   top: 6rem;
   font-size: 1.2rem;
-  background: #FFF;
+  background: #fff;
 }
-
 </style>

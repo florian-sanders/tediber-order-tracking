@@ -1,6 +1,6 @@
 <template>
   <button class="cart" type="button" aria-expanded="false">
-    <img class="cart__img" :src="cartImg" alt="Mon Panier" height="70" >
+    <img class="cart__img" :src="cartImg" alt="Mon Panier" height="70" width="70" >
   </button>
 </template>
 

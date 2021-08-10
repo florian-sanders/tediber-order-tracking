@@ -1,5 +1,5 @@
 <template>
-  <section class="error-content">
+  <section class="error-content" v-if="errorType">
     <h1 class="section-heading">
       <span class="section-heading__text">{{ heading }}</span>
     </h1>
@@ -24,11 +24,14 @@
       {{ line2 }}
     </p>
   </section>
+  <AppLoading v-else />
 </template>
 
 <script>
 import tediberBearImg from '@/assets/logo-tediber-bear.svg';
 import teardropImg from '@/assets/teardrop.svg';
+
+import AppLoading from './AppLoading.vue';
 
 export default {
   name: 'AppError',
@@ -47,7 +50,7 @@ export default {
         line1:
           "J'ai l'impression que Tediber rencontre de petits soucis techniques.",
         line2:
-          "Pour plus d'informations contacter sanders.florian@gmail.com (j'ai entendu dire qu'il cherchait un stage aussi...).",
+          "Pour plus d'informations contacter notre développeur en herbe sanders.florian@gmail.com (j'ai entendu dire qu'il cherchait un stage aussi...).",
       },
     };
   },
@@ -55,6 +58,9 @@ export default {
     document.title = 'Erreur - Test Tediber';
   },
   computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
     errorType() {
       return this.$store.state.error;
     },
@@ -67,6 +73,9 @@ export default {
     line2() {
       return this[`texts${this.errorType}`].line2;
     },
+  },
+  components: {
+    AppLoading,
   },
 };
 </script>
