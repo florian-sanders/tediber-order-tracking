@@ -56,6 +56,12 @@
           isCapitalized
           :mdContent="choices"
         />
+        <AppDisclosure
+          heading="Navigateurs testés"
+          headingTag="h3"
+          isCapitalized
+          :mdContent="tests"
+        />
         <AppDisclosure heading="API" headingTag="h3" :mdContent="api" />
         <AppDisclosure
           heading="Conventions et nommage"
@@ -97,6 +103,9 @@ export default {
     },
     choices() {
       return this.$store.state.texts.choices;
+    },
+    tests() {
+      return this.$store.state.texts.tests;
     },
     api() {
       return this.$store.state.texts.api;

@@ -42,4 +42,25 @@
     img {
         max-width: 100%;
     }
+
+    table {
+        margin: $gutter-small auto;
+
+        caption {
+            position: absolute;
+            left: -9999px;
+        }
+
+        td, th {
+            border: solid 1px $color-main;
+            padding: .5rem;
+            text-align: center;
+        }
+
+        th {
+            font-weight: $bold-soft;
+        }
+    }
+
+    
 }
