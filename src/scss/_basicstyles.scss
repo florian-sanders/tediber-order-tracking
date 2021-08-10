@@ -27,7 +27,7 @@
         padding-left: 1rem;
     }
 
-    li {
+    li:not(:last-child) {
         margin-bottom: 0.5rem;
     }
 

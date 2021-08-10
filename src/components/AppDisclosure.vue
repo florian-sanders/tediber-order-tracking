@@ -135,7 +135,7 @@ export default {
     width: 100%;
     padding: $gutter-small 0 $gutter-small 0.5rem;
     border-top: solid 1px $color-main;
-    // avoid border collapse in case several buttons follow each other
+    // avoid border stacking in case several buttons follow each other
     box-shadow: 0px 1px 0px 0px $color-main;
 
     &--fully-padded {

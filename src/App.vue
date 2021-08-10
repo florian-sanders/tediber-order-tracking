@@ -143,10 +143,4 @@ body {
   max-width: 1042px;
   margin: 0 auto;
 }
-
-.skip-link {
-  top: 6rem;
-  font-size: 1.2rem;
-  background: #fff;
-}
 </style>
